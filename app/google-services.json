@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "888417058115",
+    "firebase_url": "https://yu-report.firebaseio.com",
+    "project_id": "yu-report",
+    "storage_bucket": "yu-report.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888417058115:android:a8659c2de62a21fe",
+        "android_client_info": {
+          "package_name": "com.nyi.yureport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888417058115-ot021pn0e8jm2p74upda69bkhq92i2pg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nyi.yureport",
+            "certificate_hash": "7edbc82f51002af2da354dd392aef36401a324e5"
+          }
+        },
+        {
+          "client_id": "888417058115-b6mli657a8o622c408kc0plfuf2c8ffq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB5TsvF5LwenI0Y4UKVxUmxV_9HtPbsbc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888417058115-b6mli657a8o622c408kc0plfuf2c8ffq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.Main.DetailActivity">
+
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:paddingLeft="@dimen/margin_medium">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Position : "
+                        android:layout_weight="1"
+                        android:padding="@dimen/margin_medium"
+                        android:textColor="@color/secondaryTextColor"/>
+
+                <TextView
+                        android:id="@+id/tv_detail_position"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Position : "
+                        android:layout_weight="1"
+                        android:padding="@dimen/margin_medium"
+                        android:textColor="@color/secondaryTextColor"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ph No : "
+                        android:layout_weight="1"
+                        android:padding="@dimen/margin_medium"
+                        android:textColor="@color/secondaryTextColor"/>
+
+                <TextView
+                        android:id="@+id/tv_detail_phno"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ph No : "
+                        android:layout_weight="1"
+                        android:padding="@dimen/margin_medium"
+                        android:textColor="@color/secondaryTextColor"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Duty Day : "
+                        android:padding="@dimen/margin_medium"
+                        android:textColor="@color/secondaryTextColor"
+                        android:layout_weight="1"/>
+
+                <TextView
+                        android:id="@+id/tv_detail_duty_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Duty Day: "
+                        android:padding="@dimen/margin_medium"
+                        android:textColor="@color/secondaryTextColor"
+                        android:layout_weight="1"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Duty Time : "
+                        android:layout_weight="1"
+                        android:padding="@dimen/margin_medium"
+                        android:textColor="@color/secondaryTextColor"/>
+
+                <TextView
+                        android:id="@+id/tv_detail_duty_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Duty Time: "
+                        android:padding="@dimen/margin_medium"
+                        android:textColor="@color/secondaryTextColor"
+                        android:layout_weight="1"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</android.support.v4.widget.NestedScrollView>
