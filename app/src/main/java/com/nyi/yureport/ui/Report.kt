@@ -23,12 +23,14 @@ import android.widget.ImageView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.GlideDrawableImageViewTarget
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.nyi.yureport.R.id.webview
 
 class Report : AppCompatActivity() {
 
     private lateinit var myWebView : WebView
     private lateinit var dia : Dialog
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     companion object {
         fun newIntent(context: Context) : Intent {
@@ -41,6 +43,8 @@ class Report : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report)
         setSupportActionBar(toolbar)
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

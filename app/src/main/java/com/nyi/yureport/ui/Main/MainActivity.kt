@@ -1,25 +1,22 @@
 package com.nyi.yureport.ui.Main
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import com.nyi.yureport.R
-import com.nyi.yureport.adapters.StaffAdapter
 import com.nyi.yureport.adapters.StaffGridAdapter
 import com.nyi.yureport.ui.BaseActivity
 import com.nyi.yureport.ui.fragments.BottomSheetFragment
-import com.nyi.yureport.viewfolders.StaffVH
 import com.nyi.yureport.vos.StaffVO
 
 import kotlinx.android.synthetic.main.activity_main.*
-import android.support.v4.content.ContextCompat.startActivity
 import android.content.Intent
 import android.net.Uri
 import android.widget.*
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.nyi.yureport.ui.DetailActivity
 import com.nyi.yureport.ui.Report
 import com.nyi.yureport.ui.fragments.InfoDialogFragment
 import kotlinx.android.synthetic.main.content_main.*
@@ -38,6 +35,7 @@ class MainActivity : BaseActivity(), MainContract.MainView {
     private var hotLinNo : String? = "01535026"
     private var callNo : String? = ""
     private lateinit var mainPresenter : MainPresneter
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,6 +51,8 @@ class MainActivity : BaseActivity(), MainContract.MainView {
         btnCallHotLine = findViewById(R.id.btn_main_call_hotline)
         ivInfo = findViewById(R.id.iv_main_info)
         llReport = findViewById(R.id.ll_main_report)
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         mainPresenter = MainPresneter(this)
 

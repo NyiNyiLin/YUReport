@@ -1,16 +1,13 @@
-package com.nyi.yureport.ui.Main
+package com.nyi.yureport.ui
 
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.BaseBundle
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.TextView
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.nyi.yureport.R
-import com.nyi.yureport.ui.BaseActivity
 import com.nyi.yureport.vos.StaffVO
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -22,6 +19,8 @@ class DetailActivity : BaseActivity() {
     private lateinit var tvPhNo : TextView
     private lateinit var tvDutyDay : TextView
     private lateinit var tvDutyTime : TextView
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     companion object {
 
@@ -46,6 +45,7 @@ class DetailActivity : BaseActivity() {
         tvDutyTime = findViewById(R.id.tv_detail_duty_time)
 
         makeUnicodeSupport()
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
         staffVO = StaffVO.convertIntentToObject(intent)
         supportActionBar?.title = staffVO.name
