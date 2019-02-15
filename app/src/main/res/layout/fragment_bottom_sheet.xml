@@ -33,13 +33,23 @@
 
         <TextView
                 android:id="@+id/tv_bottom_about"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="About"
-            android:textColor="@color/secondaryTextColor"
-            android:background="@drawable/bg_border"
-            android:gravity="left"
-            android:padding="@dimen/margin_medium_2"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About"
+                android:textColor="@color/secondaryTextColor"
+                android:background="@drawable/bg_border"
+                android:gravity="left"
+                android:padding="@dimen/margin_medium_2"/>
+
+        <TextView
+                android:id="@+id/tv_bottom_privacy_policy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Privacy Policy"
+                android:textColor="@color/secondaryTextColor"
+                android:background="@drawable/bg_border"
+                android:gravity="left"
+                android:padding="@dimen/margin_medium_2"/>
 
 
     </LinearLayout>

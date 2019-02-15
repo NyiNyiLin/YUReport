@@ -31,6 +31,7 @@ class Report : AppCompatActivity() {
     private lateinit var myWebView : WebView
     private lateinit var dia : Dialog
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var link : String ? = ""
 
     companion object {
         fun newIntent(context: Context) : Intent {
@@ -88,7 +89,7 @@ class Report : AppCompatActivity() {
     private fun loadLink(){
         val list = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
-                val link = p0.getValue(String::class.java)
+                link = p0.getValue(String::class.java)
                 //Log.d("global", link)
                 myWebView.loadUrl(link)
             }

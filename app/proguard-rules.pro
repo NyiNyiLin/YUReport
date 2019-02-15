@@ -25,3 +25,4 @@
 -keep public class * extends java.lang.Exception
 -keep class com.crashlytics.** { *; }
 -dontwarn com.crashlytics.**
+-keepclassmembers class com.nyi.yureport.vos.**{*;}

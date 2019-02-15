@@ -1,12 +1,19 @@
 package com.nyi.yureport.ui.fragments
 
 import android.app.Dialog
+import android.content.Context
+import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.support.design.widget.BottomSheetDialogFragment
 import android.support.design.widget.CoordinatorLayout
+import android.support.v4.content.ContextCompat.getSystemService
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import com.nyi.yureport.R
+import com.nyi.yureport.ui.PrivacyPolicyActivity
 import com.nyi.yureport.ui.Report
 
 /**
@@ -25,11 +32,10 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         val btn_report = view.findViewById<TextView>(R.id.tv_bottom_report)
         val btn_about = view.findViewById<TextView>(R.id.tv_bottom_about)
+        val btn_privacy_policy = view.findViewById<TextView>(R.id.tv_bottom_privacy_policy)
 
         btn_report.setOnClickListener {
-
-            val intent = Report.newIntent(context!!)
-            startActivity(intent)
+            onClickReport()
         }
 
         btn_about.setOnClickListener {
@@ -37,6 +43,26 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             dialog.show(fragmentManager, "Info Fragment")
         }
 
+        btn_privacy_policy.setOnClickListener {
+
+            val intent = Intent(context, PrivacyPolicyActivity::class.java)
+            startActivity(intent)
+        }
+
         //val behavior = params.behavior
+    }
+
+    private fun onClickReport(){
+        val cm = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+        val isConnected :Boolean = activeNetwork?.isConnected == true
+
+        if(isConnected){
+            val intent = Report.newIntent(context!!)
+            startActivity(intent)
+        }else{
+            Toast.makeText(context, "Require internet connection to report", Toast.LENGTH_LONG).show()
+
+        }
     }
 }

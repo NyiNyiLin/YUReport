@@ -15,6 +15,15 @@
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
         <activity
+                android:name=".ui.PrivacyPolicyActivity"
+                android:label="@string/title_activity_privacy_policy"
+                android:parentActivityName=".ui.Main.MainActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.nyi.yureport.ui.Main.MainActivity"/>
+        </activity>
+        <activity
                 android:name=".ui.Main.MainActivity"
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
@@ -42,11 +51,9 @@
 
         <service android:name=".services.MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
     </application>
-
-
 
 </manifest>

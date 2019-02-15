@@ -1,5 +1,6 @@
 package com.nyi.yureport.ui.Main
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -13,8 +14,12 @@ import com.nyi.yureport.vos.StaffVO
 
 import kotlinx.android.synthetic.main.activity_main.*
 import android.content.Intent
+import android.content.SharedPreferences
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.net.Uri
 import android.widget.*
+import com.crashlytics.android.Crashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.nyi.yureport.ui.DetailActivity
 import com.nyi.yureport.ui.Report
@@ -36,6 +41,9 @@ class MainActivity : BaseActivity(), MainContract.MainView {
     private var callNo : String? = ""
     private lateinit var mainPresenter : MainPresneter
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    var prefs: SharedPreferences? = null
+    private var firstTime = 0
+    private val ARG_IS_FIRST_TIME = "first_time"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +65,8 @@ class MainActivity : BaseActivity(), MainContract.MainView {
         mainPresenter = MainPresneter(this)
 
         mainPresenter.init()
+
+        checkFirstTime()
 
         menu.setOnClickListener{
             // Will show the bottom sheet
@@ -121,10 +131,34 @@ class MainActivity : BaseActivity(), MainContract.MainView {
     }
 
     override fun call(){
+        //test crash
+        //Crashlytics.getInstance().crash()
 
         val intent = Intent(Intent.ACTION_CALL)
 
         intent.data = Uri.parse("tel:" + callNo)
         startActivity(intent)
+    }
+
+    fun checkFirstTime(){
+        prefs = this.getSharedPreferences("com.nyi.yureport", Context.MODE_PRIVATE)
+        val isFirstTime = prefs!!.getInt(ARG_IS_FIRST_TIME, firstTime)
+
+        if(isFirstTime == firstTime){
+            val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val activeNetwork: NetworkInfo? = cm.activeNetworkInfo
+            val isConnected :Boolean = activeNetwork?.isConnected == true
+            if(isConnected){
+
+                val editor = prefs!!.edit()
+                editor.putInt(ARG_IS_FIRST_TIME, 1)
+                editor.apply()
+
+            }else{
+                Toast.makeText(this, "Require internet connection to load data for the first time", Toast.LENGTH_LONG).show()
+
+            }
+        }
+
     }
 }
