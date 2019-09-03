@@ -1,8 +1,9 @@
 package com.nyi.yureport.adapters
 
-import android.support.v7.widget.RecyclerView
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.nyi.yureport.R
 import com.nyi.yureport.viewfolders.StaffVH
 import com.nyi.yureport.vos.StaffVO

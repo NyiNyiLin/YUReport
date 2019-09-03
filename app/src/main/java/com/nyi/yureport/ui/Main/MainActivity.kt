@@ -2,14 +2,11 @@ package com.nyi.yureport.ui.Main
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import com.nyi.yureport.R
 import com.nyi.yureport.adapters.StaffGridAdapter
 import com.nyi.yureport.ui.BaseActivity
-import com.nyi.yureport.ui.fragments.BottomSheetFragment
 import com.nyi.yureport.vos.StaffVO
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,9 +15,14 @@ import android.content.SharedPreferences
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.net.Uri
+import android.util.Log
 import android.widget.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.crashlytics.android.Crashlytics
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.dynamiclinks.DynamicLink
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks
 import com.nyi.yureport.ui.DetailActivity
 import com.nyi.yureport.ui.Report
 import com.nyi.yureport.ui.fragments.InfoDialogFragment
@@ -48,7 +50,7 @@ class MainActivity : BaseActivity(), MainContract.MainView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+        //setSupportActionBar(toolbar)
 
         makeUnicodeSupport()
 
@@ -71,8 +73,8 @@ class MainActivity : BaseActivity(), MainContract.MainView {
         menu.setOnClickListener{
             // Will show the bottom sheet
             //mBottomSheetBehaviour.setState(BottomSheetBehavior.STATE_EXPANDED);
-            var bottomSheetFragment = BottomSheetFragment();
-            bottomSheetFragment.show(supportFragmentManager, "TAG");
+            //var bottomSheetFragment = BottomSheetFragment();
+            //bottomSheetFragment.show(supportFragmentManager, "TAG");
         }
 
         gridViewStaff.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
@@ -101,6 +103,9 @@ class MainActivity : BaseActivity(), MainContract.MainView {
             val intent = Report.newIntent(this)
             startActivity(intent)
         }
+        listenDynamicLink()
+
+        createDynamicLink()
 
     }
 
@@ -160,5 +165,49 @@ class MainActivity : BaseActivity(), MainContract.MainView {
             }
         }
 
+    }
+
+    fun createDynamicLink(){
+
+        val dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
+            .setLink(Uri.parse("https://www.example.com/refer?data=a"))
+            .setDomainUriPrefix("https://yureport.page.link")
+            // Open links with this app on Android
+            .setAndroidParameters(DynamicLink.AndroidParameters.Builder().build())
+            .buildShortDynamicLink()
+            .addOnSuccessListener { result ->
+                // Short link created
+                val shortLink = result.shortLink
+                val flowchartLink = result.previewLink
+                Log.i("yureport", "shortLink " + shortLink + " flowchartLink " + flowchartLink)
+            }.addOnFailureListener {
+                // Error
+                // ...
+                Log.e("yureport", it.message)
+            }
+    }
+
+    fun listenDynamicLink(){
+        FirebaseDynamicLinks.getInstance()
+            .getDynamicLink(intent)
+            .addOnSuccessListener(this) { pendingDynamicLinkData ->
+                // Get deep link from result (may be null if no link is found)
+                var deepLink: Uri? = null
+                if (pendingDynamicLinkData != null) {
+                    deepLink = pendingDynamicLinkData.link
+                    Log.i("yureport", "deeplink " + deepLink)
+                    val paramater = deepLink!!.getQueryParameter("data")
+                    Log.i("yureport", "paramater " + paramater)
+                }
+
+                Log.i("yureport", "deeplink null" )
+                // Handle the deep link. For example, open the linked
+                // content, or apply promotional credit to the user's
+                // account.
+                // ...
+
+                // ...
+            }
+            .addOnFailureListener(this) { e -> Log.w("yureport", "getDynamicLink:onFailure", e) }
     }
 }

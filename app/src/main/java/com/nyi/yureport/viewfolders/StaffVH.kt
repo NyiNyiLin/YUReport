@@ -1,6 +1,6 @@
 package com.nyi.yureport.viewfolders
 
-import android.support.v7.widget.RecyclerView
+
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.nyi.yureport.R
 import com.nyi.yureport.vos.StaffVO
 
-class StaffVH(itemView : View, val controllerStaffItem: ControllerStaffItem) : RecyclerView.ViewHolder(itemView) {
+class StaffVH(itemView : View, val controllerStaffItem: ControllerStaffItem) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
 
     private var name : TextView
     private var phNo : TextView
