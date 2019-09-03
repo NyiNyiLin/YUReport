@@ -1,6 +1,8 @@
 package com.nyi.yureport
 
 import android.app.Application
+import android.os.Bundle
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.nyi.yureport.vos.StaffVO
@@ -16,6 +18,14 @@ class YUReport : Application() {
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         mDatabase = FirebaseDatabase.getInstance().reference
+
+        // Obtain the FirebaseAnalytics instance.
+        val firebaseAnalytics = FirebaseAnalytics.getInstance(this)
+        val bundle = Bundle()
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "id 123")
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "name test")
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image")
+        firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle)
 
         //initialUpload()
     }
